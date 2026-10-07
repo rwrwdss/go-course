@@ -1,5 +1,7 @@
 package main
 
+import "slices"
+
 // User — пользователь нашего сервиса.
 type User struct {
 	ID       int
@@ -15,7 +17,7 @@ type User struct {
 func ActiveUsers(users []User) []User {
 	var result []User
 	for _, u := range users {
-		if !u.IsActive {
+		if u.IsActive == true {
 			result = append(result, u)
 		}
 	}
@@ -26,9 +28,9 @@ func ActiveUsers(users []User) []User {
 // чтобы вызывающий код мог изменить пользователя прямо в слайсе.
 // 🐞 ЗАДАНИЕ 2: изменения через возвращённый указатель не попадают в слайс. Почему?
 func FindByID(users []User, id int) (*User, bool) {
-	for _, u := range users {
-		if u.ID == id {
-			return &u, true
+	for i := range users {
+		if users[i].ID == id {
+			return &users[i], true
 		}
 	}
 	return nil, false
@@ -37,9 +39,9 @@ func FindByID(users []User, id int) (*User, bool) {
 // ApplyBonus начисляет бонус на баланс всем АКТИВНЫМ пользователям (меняет слайс на месте).
 // 🐞 ЗАДАНИЕ 3: после вызова балансы не меняются. Исправь.
 func ApplyBonus(users []User, bonus int) {
-	for _, u := range users {
-		if u.IsActive {
-			u.Balance += bonus
+	for i := range users {
+		if users[i].IsActive == true {
+			users[i].Balance += bonus
 		}
 	}
 }
@@ -48,7 +50,15 @@ func ApplyBonus(users []User, bonus int) {
 // ✍️ ЗАДАНИЕ 4: допиши функцию.
 func AdultNames(users []User) []string {
 	// TODO: собери имена, где Age >= 18, и отсортируй их (пакет sort или slices)
-	return nil
+	var tempUsers []string
+	for i := range users {
+		if users[i].Age >= 18 {
+			tempUsers = append(tempUsers, users[i].Name)
+
+		}
+	}
+	slices.Sort(tempUsers)
+	return tempUsers
 }
 
 // Paginate возвращает страницу пользователей.
@@ -56,6 +66,19 @@ func AdultNames(users []User) []string {
 // Если page < 1, size < 1 или страница за пределами данных — вернуть пустой (НЕ nil) слайс []User{}.
 // ✍️ ЗАДАНИЕ 5: допиши функцию. Не забудь про последнюю неполную страницу!
 func Paginate(users []User, page, size int) []User {
-	// TODO: посчитай start/end, проверь границы и верни подслайс
-	return nil
+	if page < 1 || size < 1 {
+		return []User{}
+	}
+	start := (page - 1) * size
+
+	if start >= len(users) {
+		return []User{}
+	}
+
+	end := start + size
+
+	if end > len(users) {
+		end = len(users)
+	}
+	return users[start:end]
 }

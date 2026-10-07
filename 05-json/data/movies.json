@@ -1,0 +1,7 @@
+[
+  {"id": 1, "title": "Inception", "year": 2010, "imdb_rating": 8.8, "genres": ["sci-fi", "thriller"], "director": {"name": "Christopher Nolan", "country": "UK"}},
+  {"id": 2, "title": "Брат", "year": 1997, "imdb_rating": 7.8, "genres": ["crime", "drama"], "director": {"name": "Алексей Балабанов", "country": "RU"}},
+  {"id": 3, "title": "The Room", "year": 2003, "imdb_rating": 3.6, "genres": [], "director": {"name": "Tommy Wiseau", "country": "US"}},
+  {"id": 4, "title": "Interstellar", "year": 2014, "imdb_rating": 8.7, "genres": ["sci-fi", "drama"], "director": {"name": "Christopher Nolan", "country": "UK"}},
+  {"id": 5, "title": "Ирония судьбы", "year": 1975, "imdb_rating": 8.0, "genres": ["comedy"], "director": {"name": "Эльдар Рязанов", "country": "RU"}}
+]

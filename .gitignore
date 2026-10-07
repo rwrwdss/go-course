@@ -1,0 +1,4 @@
+cover.out
+*.test
+/bin/
+.DS_Store
